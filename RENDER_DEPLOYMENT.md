@@ -20,6 +20,12 @@ alist-proxy 是一个为 alist 文件管理系统提供代理下载服务的 Go 
 - 有效的 alist 服务器实例
 - GitHub 仓库 (用于自动部署)
 
+### 3. 依赖管理说明
+
+- 项目不包含 `go.sum` 文件，这是故意的
+- Render 在构建时会自动运行 `go mod tidy` 来下载依赖并生成 `go.sum`
+- 这确保了依赖的版本兼容性和安全性
+
 ## Render 部署步骤
 
 ### 方法一：使用 render.yaml 自动部署
