@@ -78,7 +78,7 @@ type Result struct {
 }
 
 func errorResponse(w http.ResponseWriter, code int, msg string) {
-	w.Header().Set("content-type", "text/json")
+	w.Header().Set("Content-Type", "application/json")
 	res, _ := json.Marshal(Result{Code: code, Msg: msg})
 	w.WriteHeader(200)
 	_, _ = w.Write(res)
@@ -126,10 +126,6 @@ func downHandle(w http.ResponseWriter, r *http.Request) {
 		resp.Data.Url = "http:" + resp.Data.Url
 	}
 	fmt.Println("proxy:", resp.Data.Url)
-	if err != nil {
-		errorResponse(w, 500, err.Error())
-		return
-	}
 	req2, _ := http.NewRequest(r.Method, resp.Data.Url, nil)
 	for h, val := range r.Header {
 		req2.Header[h] = val
@@ -156,7 +152,8 @@ func downHandle(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(res2.StatusCode)
 	_, err = io.Copy(w, res2.Body)
 	if err != nil {
-		errorResponse(w, 500, err.Error())
+		// 此时响应头已经写入，只能记录错误
+		fmt.Printf("Error copying response body: %s\n", err.Error())
 		return
 	}
 }
