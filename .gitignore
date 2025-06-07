@@ -10,5 +10,19 @@
 
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
+
+# IDE files
 .idea
+.vscode
+
+# Build output
 alist-proxy
+bin/
+dist/
+
+# Environment files
+.env
+.env.local
+
+# Go sum file (will be generated during build)
+go.sum

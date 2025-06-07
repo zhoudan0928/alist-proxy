@@ -3,7 +3,7 @@ services:
     name: alist-proxy
     env: go
     plan: free
-    buildCommand: go build -o bin/alist-proxy -ldflags="-w -s" .
+    buildCommand: go mod tidy && go build -o bin/alist-proxy -ldflags="-w -s" .
     startCommand: ./bin/alist-proxy
     healthCheckPath: /health
     envVars:

@@ -40,8 +40,9 @@ alist-proxy 是一个为 alist 文件管理系统提供代理下载服务的 Go 
 3. **Render 会自动检测 render.yaml 配置文件**
    - 服务类型: Web Service
    - 环境: Go
-   - 构建命令: `go build -o bin/alist-proxy -ldflags="-w -s" .`
+   - 构建命令: `go mod tidy && go build -o bin/alist-proxy -ldflags="-w -s" .`
    - 启动命令: `./bin/alist-proxy`
+   - 注意: `go mod tidy` 会自动下载依赖并生成 go.sum 文件
 
 4. **配置环境变量**
    - 在服务设置中添加环境变量：
@@ -63,7 +64,7 @@ alist-proxy 是一个为 alist 文件管理系统提供代理下载服务的 Go 
 2. **配置构建设置**
    - Name: `alist-proxy`
    - Environment: `Go`
-   - Build Command: `go build -o bin/alist-proxy -ldflags="-w -s" .`
+   - Build Command: `go mod tidy && go build -o bin/alist-proxy -ldflags="-w -s" .`
    - Start Command: `./bin/alist-proxy`
 
 3. **高级设置**
