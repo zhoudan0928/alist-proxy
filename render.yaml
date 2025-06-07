@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: alist-proxy
+    env: go
+    plan: free
+    buildCommand: go build -o bin/alist-proxy -ldflags="-w -s" .
+    startCommand: ./bin/alist-proxy
+    healthCheckPath: /health
+    envVars:
+      - key: PORT
+        sync: false
+      - key: ALIST_ADDRESS
+        sync: false
+      - key: ALIST_TOKEN
+        sync: false
+    autoDeploy: true
+    branch: main
